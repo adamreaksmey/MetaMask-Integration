@@ -1,8 +1,12 @@
-import React from "react";
-// import Componenttesting from "@/app/componenttesting";
+'use client';
 
-const page = () => {
-  return <div className="flex justify-center">Hello world!</div>;
-};
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-export default page;
+export default function HomePage() {
+  return (
+    <main style={{ padding: "2rem" }}>
+      <h1>Connect Wallet</h1>
+      <ConnectButton />
+    </main>
+  );
+}
