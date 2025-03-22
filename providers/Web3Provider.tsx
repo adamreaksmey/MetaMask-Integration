@@ -6,7 +6,6 @@ import { WagmiProvider } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PROJECT_ID } from "@/constants/env";
-import { ReactNode } from "react";
 
 const config = getDefaultConfig({
   appName: "MetaMask Integration",
@@ -20,8 +19,12 @@ const queryClient = new QueryClient();
 export function Web3Provider({ children }: React.PropsWithChildren<{}>) {
   return (
     <WagmiProvider config={config}>
+      {/* React Query handles caching, loading, and async state */}
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        {/* RainbowKit wraps the app to provide wallet UI & modals */}
+        <RainbowKitProvider modalSize="compact" coolMode>
+          {children}
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
